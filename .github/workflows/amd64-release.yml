@@ -20,8 +20,8 @@ jobs:
           images="${{ github.event.inputs.docker_images }}"
           IFS=',' read -r -a image_array <<< "$images"
           for image in "${image_array[@]}"; do
-            docker compose pull "${image}"  --ignore-buildable
-            ### docker pull "${image}" --platform "linux/amd64" 
+            ## docker compose pull "${image}"  --ignore-buildable
+            docker pull "${image}" --platform "linux/amd64" -q
 
             image_name="${image//\//_}"
             image_name="${image_name//:/_}"
